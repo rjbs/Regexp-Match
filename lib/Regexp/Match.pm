@@ -2,6 +2,11 @@ use strict;
 use warnings;
 package Regexp::Match;
 
+sub Regexp::match {
+  my ($qr, $target, $p) = @_;
+  Regexp::Match->matches($target, $qr, $p);
+}
+
 sub matches {
   my ($class, undef, $qr, $p) = @_;
   my $str = "$_[1]"; # stringify only once

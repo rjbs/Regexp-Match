@@ -24,6 +24,24 @@ use Test::More;
   );
 }
 
+subtest "qr->match" => sub {
+  my $qr = qr/a(.)ph(.+)g(.+)a/;
+  my $m = $qr->match("our input: alpha beta gamma deltoid", 1);
+
+  ok($m, "matches");
+
+  is($m->pre_match,  'our input: ',      'pre_match');
+  is($m->match,      'alpha beta gamma', 'match');
+  is($m->post_match, ' deltoid',         'post_match');
+
+  is($m->captures, 3, "three captures");
+  is_deeply(
+    [ $m->captures ],
+    [ 'l', 'a beta ', 'amm' ],
+    "captures are what we expected",
+  );
+};
+
 {
   my $m = Regexp::Match->matches(
     "foobarbaz",
