@@ -45,3 +45,5 @@ use Test::More;
   is_deeply( [ $m->capture_list('bar') ], [ qw(bar)],      'bar in list');
   is_deeply( [ $m->capture_list('xyz') ], [ ],             'xyz in list');
 }
+
+done_testing;
